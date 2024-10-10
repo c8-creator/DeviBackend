@@ -44,6 +44,10 @@ const PagesSchema = new mongoose.Schema(
       type:Boolean,
       default:true
     },
+    isPrivate:{
+      type:Boolean,
+      default:false
+    },
     profileBackground:{
       type:String,
       required :true
