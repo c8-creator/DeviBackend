@@ -29,7 +29,7 @@ const addNewPage = async (req, res) => {
       Bio,
       Website,
       isCreator,
-      isActive,
+      profileBackground
     } = req.body;
 
     const PageData = {
@@ -41,7 +41,7 @@ const addNewPage = async (req, res) => {
       Bio,
       Website,
       isCreator,
-      isActive,
+      profileBackground
     };
     const newPage = new Pages(PageData);
     const savePageData = await newPage.save();
@@ -97,7 +97,7 @@ const updatePage = async (req, res) => {
    
 
     if (!updatedPage) {
-      return res.status(404).json({ message: "User not found" });
+      return res.status(404).json({ message: "Page  not found" });
     }
 
     return res.status(200).json({ success:true,message:"Page Updated successfully",data: updatedPage });

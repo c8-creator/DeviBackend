@@ -32,7 +32,7 @@ router.delete('/users/delete',userAuthMiddleware, deleteUser);
 //account creation 
 router.get('/users/getallpages',userAuthMiddleware,PagesController.getAllpages)
 router.post('/users/addnewpage',userAuthMiddleware,PagesController.addNewPage)
-router.post ('/users/updatepage',userAuthMiddleware,PagesController.updatePage)
+router.patch ('/users/updatepage',userAuthMiddleware,PagesController.updatePage)
 router.get ('/users/togglepagestatus/:pageId',userAuthMiddleware,PagesController.togglePageStatus)
 router.get('/users/searchpages/:search',userAuthMiddleware,PagesController.searchPages)
 router.get ('/users/getpage/:pageId',userAuthMiddleware,PagesController.getPage)
