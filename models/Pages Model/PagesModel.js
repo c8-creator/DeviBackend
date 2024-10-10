@@ -43,6 +43,10 @@ const PagesSchema = new mongoose.Schema(
     isActive:{
       type:Boolean,
       default:true
+    },
+    profileBackground:{
+      type:String,
+      required :true
     }
   },
   { timestamps: true }

@@ -28,6 +28,9 @@ exports.getUsers = async function (req, res) {
         link: user.link,
         createdAt: user.createdAt,
         updatedAt: user.updatedAt,
+        bgColor:user.bgColor,
+        isPrivate:user.isPrivate,
+        pages:user.pages
       }));
 
     res.json(userResponses);
@@ -61,6 +64,9 @@ exports.getUserById = async function (req, res) {
       link: user.link,
       createdAt: user.createdAt,
       updatedAt: user.updatedAt,
+      bgColor:user.bgColor,
+      isPrivate:user.isPrivate,
+      pages:user.pages
     };
 
     res.json(userResponse);
@@ -114,6 +120,9 @@ exports.searchUsersByName = async function (req, res) {
       link: user.link,
       createdAt: user.createdAt,
       updatedAt: user.updatedAt,
+      bgColor:user.bgColor,
+      isPrivate:user.isPrivate,
+      pages:user.pages
     }));
 
     res.json(userResponses);
@@ -146,6 +155,7 @@ exports.signupUser = async function (req, res) {
     bio,
     link,
     profileImg,
+    bgColor,
   } = req.body;
 
   try {
@@ -168,6 +178,7 @@ exports.signupUser = async function (req, res) {
       bio,
       link,
       profileImg,
+      bgColor
     });
 
     await user.save();
@@ -187,6 +198,8 @@ exports.signupUser = async function (req, res) {
       profileImg: user.profileImg,
       createdAt: user.createdAt,
       updatedAt: user.updatedAt,
+      isPrivate: user.isPrivate,
+      bgColor:user.bgColor
       
     };
 
@@ -212,7 +225,8 @@ exports.loginUser = async function (req, res) {
         userPages = user.pages.map(page => ({
           pageId:page._id,
           pageName: page.pageName,
-          profileImg: page.profileImg
+          profileImg: page.profileImg,
+          profileBackground:page.profileBackground
         }));
       }
 
@@ -231,6 +245,8 @@ exports.loginUser = async function (req, res) {
         profileImg: user.profileImg,
         createdAt: user.createdAt,
         updatedAt: user.updatedAt,
+        bgColor:user.bgColor,
+        isPrivate:user.isPrivate,
         pages: userPages  // Include pages with pageName and profileImg if available
       };
 
@@ -247,7 +263,7 @@ exports.loginUser = async function (req, res) {
 
 exports.updateUser = async function (req, res) {
   try {
-    const { name, gender, dob, bio, profession, website, profileImg, link } =
+    const { name, gender, dob, bio, profileImg, link,bgColor } =
       req.body;
 
     const user = await User.findByIdAndUpdate(
@@ -257,11 +273,11 @@ exports.updateUser = async function (req, res) {
         gender,
         dob,
         bio,
-        profession,
-        website,
         profileImg,
         link,
+        bgColor,
         updatedAt: Date.now(),
+        isPrivate
       },
       { new: true }
     );
@@ -281,6 +297,8 @@ exports.updateUser = async function (req, res) {
       profileImg: user.profileImg,
       createdAt: user.createdAt,
       updatedAt: user.updatedAt,
+      isPrivate: user.isPrivate,
+      bgColor:bgColor,
     };
 
     res.json(userResponse);

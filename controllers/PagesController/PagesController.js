@@ -78,6 +78,7 @@ const updatePage = async (req, res) => {
       "Bio",
       "Website",
       "isCreator",
+      "profileBackground"
     ];
 
     // Filter only the fields that are present in req.body

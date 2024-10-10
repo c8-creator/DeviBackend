@@ -11,7 +11,9 @@ const UserSchema = new mongoose.Schema({
   bio: { type: String },
   link: { type: String },
   createdAt: { type: Date, default: Date.now },
+  isPrivate: { type: Boolean, default: true },
   updatedAt: { type: Date, default: Date.now },
+  bgColor:{ type: String, required: true },
   pages: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Pages' }] // Reference to Page model
 });
 
